@@ -32,12 +32,14 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
         String[] intStringSplit1 = intTal1.split("");    //Split by spaces
         String[] intStringSplit2 = intTal2.split("");    // "-"
 
+
         int listaTal1 [] = new int[maxLen]; //Used to store our ints
         int listaTal2 [] = new int [maxLen]; //
         int listaResultat [] = new int[maxLen+1];
 
         StringBuilder summaSB = new StringBuilder();   //för att skriva ut resultatet i en enda string, från array
         String summa = "";
+        int carryOut = 0;
 
         for(int i = 0; i < maxLen; i++) {                 //konvertera och splitta varje karaktär (siffra) från string till int.
             listaTal1[i] = Integer.parseInt(intStringSplit1[i]);
@@ -47,11 +49,12 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
         for (int i = 0; i < maxLen; i++) {     //populera resultatlistan
 
             if( (listaTal1[maxLen-1] + listaTal2[maxLen-1]) > 9) {
-                //här ska det finnas information om vad som händer med carry out
+                carryOut = 1;
+                //Gör om till string, använd split metod, i array. Spara plats 0 i listan (carry out) addera carryout till resterande
             }
 
             else {
-                listaResultat[i] = listaTal1[i] + listaTal2[i];
+                listaResultat[i] = listaTal1[i] + listaTal2[i] + carryOut;
             }
 
             int siffra = listaResultat[i];     //siffran på plats i resultatlistan
