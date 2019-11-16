@@ -6,8 +6,8 @@ import static java.lang.System.*;
 
 public class Main{
     public static void main(String[] args) {
-        String num1 = "11111111111111111111111111111111111111111111";       //initialize tal1
-        String num2 = "10905";       //initialize tal2
+        String num1 = "938471";     //initialize tal1
+        String num2 = "321957";
 
         int len1 = num1.length ();    //variabeln len1 är lika lång som tal1 längd
         int len2 = num2.length ();    //variabeln len2 är lika lång som tal2 längd
@@ -22,34 +22,33 @@ public class Main{
 
         StringBuilder resultatSB = new StringBuilder();    //för att skriva ut resultatet i en enda string, från array
         String resultat = "";
-        int carryOut = 0;
 
-
-        //populera listorna. Tomma platser i listan sätts tll 0 per automatik (i Java).
-        for (int i = 1; i <= num1Char.length; i++){
+        int carryIn = 0;
+        //populera listorna
+        for (int i = 1; i <= num1Char.length; i++) {
             intListaNum1[maxLen-i] =  Character.getNumericValue(num1Char[num1Char.length-i]);
         }
 
-        for ( int i = 1; i <= num2Char.length; i++){
+        for ( int i = 1; i <= num2Char.length; i++) {
             intListaNum2[maxLen-i] = Character.getNumericValue(num2Char[num2Char.length-i]);
         }
 
-        //resultatet/additionen
-        for (int i = 1; i <= maxLen; i++) {
-            if( (carryOut + intListaNum1[maxLen-i] + intListaNum2[maxLen-i]) > 9){
-                String overFlow = String.valueOf(carryOut + intListaNum1[maxLen-i] + intListaNum2[maxLen-i]);
-                char[] overFlowList = overFlow.toCharArray();
-                resultatSB = resultatSB.append( Character.toString(overFlowList[1]) );
-                carryOut=1;
+        //subtraktionen, metoden kallas enbart om num1 > num2
+        for( int i = 1; i <= maxLen; i++) {
+            if( intListaNum1[maxLen-i] < intListaNum2[maxLen-i]){
+                String nySiffra = "1" + String.valueOf(intListaNum1[maxLen-i]);
+                intListaNum1[maxLen-i] = Integer.parseInt(nySiffra);
+                resultatSB = resultatSB.append(intListaNum1[maxLen-i] - intListaNum2[maxLen-i]);
+                carryIn = -1;
             }
             else{
-                resultatSB = resultatSB.append(String.valueOf (carryOut + intListaNum1[maxLen-i] + intListaNum2[maxLen-i]) ); //carryout+ sistaplatsen i båda listor konverteras till string och läggs i stringbuidern (dynamiskt växande)
-                carryOut = 0;
-            }
 
+                resultatSB = resultatSB.append(String.valueOf(carryIn + intListaNum1[maxLen-i]- intListaNum2[maxLen-i]));
+                carryIn = 0;
+            }
         }
         resultat = resultatSB.reverse().toString();    //flippa resultatSB, konvertera till string.
-        out.println(resultat);                          //returnera string
+
     }
 }
 
