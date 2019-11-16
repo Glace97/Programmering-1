@@ -4,7 +4,6 @@
     <list default="true" id="7b3cec9f-7183-4218-b457-f7ffdd1c47cf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Algoritmer i samband med Objekt/src/OperationerMedNaturligaHeltalGivnaSomTeckenstrangar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Algoritmer i samband med Objekt/src/OperationerMedNaturligaHeltalGivnaSomTeckenstrangar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +91,7 @@
       <workItem from="1573121914830" duration="1934000" />
       <workItem from="1573469467633" duration="10032000" />
       <workItem from="1573755954444" duration="1859000" />
-      <workItem from="1573757827478" duration="24409000" />
+      <workItem from="1573757827478" duration="25199000" />
     </task>
     <servers />
   </component>

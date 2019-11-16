@@ -114,11 +114,11 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
 
         //subtraktionen, metoden kallas enbart om num1 > num2
         for (int i = 1; i <= maxLen; i++) {
-            if (intListaNum1[maxLen-i] < intListaNum2[maxLen-i]) {
-                String nySiffra = "1" + String.valueOf(intListaNum1[maxLen-i]);
+            if (intListaNum1[maxLen-i] < intListaNum2[maxLen-i]) {                          //ifsats för lånesifra
+                String nySiffra = "1" + String.valueOf(intListaNum1[maxLen-i]);             //nya talet med lånesiffra
                 intListaNum1[maxLen-i] = Integer.parseInt(nySiffra);
                 resultatSB = resultatSB.append(intListaNum1[maxLen-i] - intListaNum2[maxLen-i]);
-                carryIn = -1;
+                carryIn = -1;                                                                       //nästa tal är -1 i värde
             }
             else {
 
