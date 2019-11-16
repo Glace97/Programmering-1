@@ -21,50 +21,50 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
     // addera tar emot två naturliga heltal givna som teckensträngar, och returnerar deras
     // summa som en teckensträng.
     public static String addera (String tal1, String tal2) {
-        String intTal1 = tal1;       //initialize tal1
-        String intTal2 = tal2;       //initialize tal2
+        String num1 = "11111111111111111111111111111111111111111111";       //initialize tal1
+        String num2 = "10905";       //initialize tal2
 
-        int len1 = intTal1.length ();    //variabeln len1 är lika lång som tal1 längd
-        int len2 = intTal2.length ();    //variabeln len2 är lika lång som tal2 längd
-        int maxLen = Math.max(len1, len2);   //hitta längsta talet
-        int minLen = Math.min(len1, len2);   //hitta minsta talet
+        int len1 = num1.length ();    //variabeln len1 är lika lång som tal1 längd
+        int len2 = num2.length ();    //variabeln len2 är lika lång som tal2 längd
+        int maxLen = Math.max(len1, len2);   //hitta längsta talet, anger längden
 
-        String[] intStringSplit1 = intTal1.split("");    //Split by spaces
-        String[] intStringSplit2 = intTal2.split("");    // "-"
+        //Gör en array av alla chars från tal1/2
+        char[] num1Char = num1.toCharArray();
+        char[] num2Char = num2.toCharArray();
 
+        int intListaNum1 [] = new int[maxLen];         //Used to store our ints  är lika stor som största talet. Det mindre talet populeras med nollor på överblivna platser
+        int intListaNum2 [] = new int [maxLen];
 
-        int listaTal1 [] = new int[maxLen]; //Used to store our ints
-        int listaTal2 [] = new int [maxLen]; //
-        int listaResultat [] = new int[maxLen+1];
-
-        StringBuilder summaSB = new StringBuilder();   //för att skriva ut resultatet i en enda string, från array
-        String summa = "";
+        StringBuilder resultatSB = new StringBuilder();    //för att skriva ut resultatet i en enda string, från array
+        String resultat = "";
         int carryOut = 0;
 
-        for(int i = 0; i < maxLen; i++) {                 //konvertera och splitta varje karaktär (siffra) från string till int.
-            listaTal1[i] = Integer.parseInt(intStringSplit1[i]);
-            listaTal2[i] = Integer.parseInt(intStringSplit2[i]);
+
+        //populera listorna. Tomma platser i listan sätts tll 0 per automatik (i Java).
+        for (int i = 1; i <= num1Char.length; i++){
+            intListaNum1[maxLen-i] =  Character.getNumericValue(num1Char[num1Char.length-i]);
         }
 
-        for (int i = 0; i < maxLen; i++) {     //populera resultatlistan
-
-            if( (listaTal1[maxLen-1] + listaTal2[maxLen-1]) > 9) {
-                carryOut = 1;
-                //Gör om till string, använd split metod, i array. Spara plats 0 i listan (carry out) addera carryout till resterande
-            }
-
-            else {
-                listaResultat[i] = listaTal1[i] + listaTal2[i] + carryOut;
-            }
-
-            int siffra = listaResultat[i];     //siffran på plats i resultatlistan
-            String siffraString [] = new String[maxLen];  // lista som håller string variabler
-            siffraString [i] = String.valueOf(siffra);     //Sätt värdet, bakifrån fram
-
-            summa = "" + summaSB.append(siffraString[i]);
+        for ( int i = 1; i <= num2Char.length; i++){
+            intListaNum2[maxLen-i] = Character.getNumericValue(num2Char[num2Char.length-i]);
         }
 
-        return summa;
+        //resultatet/additionen
+        for (int i = 1; i <= maxLen; i++) {
+            if( (carryOut + intListaNum1[maxLen-i] + intListaNum2[maxLen-i]) > 9){
+                String overFlow = String.valueOf(carryOut + intListaNum1[maxLen-i] + intListaNum2[maxLen-i]);
+                char[] overFlowList = overFlow.toCharArray();
+                resultatSB = resultatSB.append( Character.toString(overFlowList[1]) );
+                carryOut=1;
+            }
+            else{
+                resultatSB = resultatSB.append(String.valueOf (carryOut + intListaNum1[maxLen-i] + intListaNum2[maxLen-i]) ); //carryout+ sistaplatsen i båda listor konverteras till string och läggs i stringbuidern (dynamiskt växande)
+                carryOut = 0;
+            }
+
+        }
+        resultat = resultatSB.reverse().toString();    //flippa resultatSB, konvertera till string.
+        return resultat;                          //returnera string
     }
 
     // subtrahera tar emot två naturliga heltal givna som teckensträngar, och returnerar
