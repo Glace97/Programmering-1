@@ -31,6 +31,5 @@ public class PunktTest {
         //testa en konstruktor till
         Punkt p = new Punkt (p1);
         out.println (p);
-
     }
 }

@@ -44,11 +44,10 @@ public class Punkt {
         return (Math.sqrt( Math.pow(x, 2) + Math.pow(y, 2) ) );
     }
 
-    public Punkt(Punkt p) {
+    public Punkt(Punkt p) {       //Så att p1 eller p2 kan användas som argument vid nytt skapande av objekt. En konstruktor (saknar namn), tar ett bjekt av sig själv
         xKordinat = p.xKordinat;
         yKordinat = p.yKordinat;
         punktNamn = p.punktNamn;
-        System.out.println(p.punktNamn + ": " +p.xKordinat + " " + p.yKordinat);
     }
 
     //För att skriva ut i en fin sträng
