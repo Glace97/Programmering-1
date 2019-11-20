@@ -7,8 +7,8 @@ public class Punkt {
     //I Punkttest så testat konstruktorn genom att ge argumentet till "Punk", efter att skapad Punkt object
     // Komme också fungera som våran Setter (sätter värderna). därav "this" keyword
 
-    public Punkt  (String a, int x, int y) {
-        this.punktNamn = a;
+    public Punkt  (String namn, int x, int y) {
+        this.punktNamn = namn;
         this.xKordinat = x;
         this.yKordinat = y;
 
@@ -22,6 +22,7 @@ public class Punkt {
     public void setY(int y) {
         this.yKordinat = y;
     }
+
 
     //Returnerar specifika värden
     public String getNamn() {
@@ -40,14 +41,14 @@ public class Punkt {
     public double avstand(Punkt p) {
         double x = Math.abs(getX()-p.getX());
         double y = Math.abs(getY() - p.getY());
-        double avstand = Math.sqrt( Math.pow(x, 2) + Math.pow(y, 2));
-        return avstand;
+        return (Math.sqrt( Math.pow(x, 2) + Math.pow(y, 2) ) );
     }
 
     public Punkt(Punkt p) {
         xKordinat = p.xKordinat;
         yKordinat = p.yKordinat;
-        System.out.println(p.xKordinat + " " + p.yKordinat);
+        punktNamn = p.punktNamn;
+        System.out.println(p.punktNamn + ": " +p.xKordinat + " " + p.yKordinat);
     }
 
     //För att skriva ut i en fin sträng
