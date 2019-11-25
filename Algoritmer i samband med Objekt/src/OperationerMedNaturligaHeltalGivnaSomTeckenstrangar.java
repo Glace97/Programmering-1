@@ -19,15 +19,16 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
 
         // subtrahera heltalen och visa resultatet
         String differans = subtrahera(tal1, tal2);
-        int num1 = Integer.parseInt(tal1);
-        int num2 = Integer.parseInt(tal2);
+        //int num1 = Integer.parseInt(tal1);
+        //int num2 = Integer.parseInt(tal2);
 
-        if (num1 < num2){
-            out.println("Tal1 måste vara större än tal2 för subtraktion");
-        }
-        else {
+        //Krav för att anropa - metoden
+        //if (num1 < num2) {
+       //     out.println("Tal1 måste vara större än tal2 för subtraktion");
+        //}
+        //else {
             visa(tal1, tal2, differans, '-');
-        }
+        //}
     }
 
     // addera tar emot två naturliga heltal givna som teckensträngar, och returnerar deras
@@ -48,7 +49,7 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
         int intListaNum2 [] = new int [maxLen];
 
         StringBuilder resultatSB = new StringBuilder();    //för att skriva ut resultatet i en enda string, från array
-        String resultat = "";
+      //  String resultat = "";
         int carryOut = 0;
 
 
@@ -69,14 +70,18 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
                 resultatSB = resultatSB.append( Character.toString(overFlowList[1]) );
                 carryOut=1;
             }
-            else{
+
+            else {
                 resultatSB = resultatSB.append(String.valueOf (carryOut + intListaNum1[maxLen-i] + intListaNum2[maxLen-i]) ); //carryout+ sistaplatsen i båda listor konverteras till string och läggs i stringbuidern (dynamiskt växande)
                 carryOut = 0;
             }
 
         }
 
-        resultat = resultatSB.reverse().toString();    //flippa resultatSB, konvertera till string.
+        if( carryOut==1 ){
+            resultatSB.append(carryOut);
+        }
+        String resultat = resultatSB.reverse().toString();    //flippa resultatSB, konvertera till string.
         return resultat;                          //returnera string
     }
 
@@ -100,12 +105,12 @@ class OperationerMedNaturligaHeltalGivnaSomTeckenstrangar {
         int intListaNum2 [] = new int [maxLen];
 
         StringBuilder resultatSB = new StringBuilder();    //för att skriva ut resultatet i en enda string, från array
-        String resultat = "";
+        String resultat = "";   //initialize variabel
+        int carryIn = 0;  // -"-
 
-        int carryIn = 0;
-        //populera listorna
+        //populera listorna, gör om värdet till ints
         for (int i = 1; i <= num1Char.length; i++) {
-            intListaNum1[maxLen-i] =  Character.getNumericValue(num1Char[num1Char.length-i]);
+            intListaNum1[maxLen-i] =  Character.getNumericValue(num1Char[num1Char.length-i]);   //maxlen-i när i=1 är sista platsen i listan
         }
 
         for (int i = 1; i <= num2Char.length; i++) {
