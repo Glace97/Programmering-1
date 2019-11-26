@@ -50,10 +50,18 @@ public class Polylinje{
 
     //returnerar längden på polylinjen
     public double langd () {
-        double langd;
+        double langd = 0;
+
         for(int i = 0; i <this.horn.length; i++) {
-            langd +=
+            int currentX = this.horn[i].getX();
+            int currentY = this.horn[i].getY();
+            int nextX = this.horn[i+1].getX();
+            int nextY = this.horn[i+1].getY();
+
+            langd += Math.sqrt(  Math.pow ((currentX-nextX), 2)  +  Math.pow((currentY-nextY),2) );     //distansformeln
         }
+
+        return langd;
     }
 
     //metoden för att skapa punkterna till punktlistan
@@ -65,6 +73,7 @@ public class Polylinje{
         h[i] = new Punkt (horn);
         this.horn = h;                                  //sätter nya punkten på sista platsen
     }
+
 
     //metoden tar ett hörn som vi vill lägga en ny/befintlig punkt framför. Arg är alltså det hörnet som kommer petas ett steg närmare listans slut
     public void laggTillFramfor (Punkt horn, String hornNamn) {
@@ -87,6 +96,14 @@ public class Polylinje{
     }
 
     public void taBort (String hornNamn) {
+        Punkt[] h = new Punkt[this.horn.length];
 
+        //kopierar tidigare hörn i listan
+        for(int i = 0; i <this.horn.length; i++) {
+            h[i] = this.horn[i];
+            if( hornNamn == h[i].getNamn() ){      //platsen ges till nya punkten
+                h[i] = this.horn[i+1];
+            }
+        }
     }
 }
