@@ -1,13 +1,10 @@
 public class PolylinjeTest {
     public static void main(String[] args) {
 
-
         //skapar objekt från Polylinje klassen
         Polylinje punkt = new Polylinje();
         Polylinje valjPolylinje = new Polylinje();
 
-        Punkt punk1 = new Punkt("Test", 1, 2);
-        Polylinje test = new Polylinje(punk1);
         //Objektet (från polylinje) anropar metoden "laggTill" och skapar ett nytt objekt (från Punkt)
         //och anger argumentet som objektet Punk (och angiver argument till Punkt i sin tur
         punkt.laggTill(new Punkt("A",3, 4));

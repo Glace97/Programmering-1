@@ -1,3 +1,8 @@
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.Arrays;
+import java.util.function.DoubleToIntFunction;
+
 public class Polylinje{
 
     //privata variabler behöver setter och getters
@@ -20,7 +25,13 @@ public class Polylinje{
 
     //metod för att skriva ut i en fin sträng
     public String toString () {
+        String polyLinje = "[";
 
+        for ( int i = 0; i < this.horn.length; i++){
+            polyLinje = polyLinje + this.horn[i];
+        }
+        polyLinje = polyLinje + " ]" + "Färg: " + this.farg + " Bredd: " + this.bredd;
+        return polyLinje;
     }
 
     //hämta hörnen
@@ -101,8 +112,20 @@ public class Polylinje{
         //kopierar tidigare hörn i listan
         for(int i = 0; i <this.horn.length; i++) {
             h[i] = this.horn[i];
+
             if( hornNamn == h[i].getNamn() ){      //platsen ges till nya punkten
                 h[i] = this.horn[i+1];
+                if (this.horn.length == (i+1)){             //kopierar listan och minskar 1 plats, om inga fler behövs flyttas.
+                    Punkt [] kopiaH = Arrays.copyOf(h,i+1);
+                    this.horn = kopiaH;
+                }
+                else {
+                    for (int j = i+1; j <= this.horn.length - 2; j++) {         //om vi behöver flytta flera punkter bak i listan minska 1 plats
+                           h[j] = this.horn [j+1];
+                    }
+                    Punkt[] kopia2H = Arrays.copyOf(h, this.horn.length-1);
+                    this.horn = kopia2H;
+                }
             }
         }
     }
