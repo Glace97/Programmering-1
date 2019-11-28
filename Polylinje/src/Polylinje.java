@@ -9,7 +9,6 @@ public class Polylinje{
     private Punkt[] horn;      //Lista skapas med "Punkt" som datatyp
     private int bredd = 1;
     private String  farg= "Svart";
-    private String namn;
 
     //initiera
     public Polylinje () {
@@ -30,7 +29,7 @@ public class Polylinje{
         for ( int i = 0; i < this.horn.length; i++){
             polyLinje = polyLinje + this.horn[i];
         }
-        polyLinje = polyLinje + " ]" + "Färg: " + this.farg + " Bredd: " + this.bredd;
+        polyLinje = polyLinje + "]" + "Färg: " + this.farg + ".  Bredd: " + this.bredd;
         return polyLinje;
     }
 
@@ -62,16 +61,9 @@ public class Polylinje{
     //returnerar längden på polylinjen
     public double langd () {
         double langd = 0;
-
-        for(int i = 0; i <this.horn.length; i++) {
-            int currentX = this.horn[i].getX();
-            int currentY = this.horn[i].getY();
-            int nextX = this.horn[i+1].getX();
-            int nextY = this.horn[i+1].getY();
-
-            langd += Math.sqrt(  Math.pow ((currentX-nextX), 2)  +  Math.pow((currentY-nextY),2) );     //distansformeln
+        for (int i = 0; i < horn.length - 1; i++) {
+            langd = langd + horn[i].avstand(horn[i + 1]);       //räknar ut avståndet mha metoden från klassen Punkt
         }
-
         return langd;
     }
 
@@ -88,22 +80,23 @@ public class Polylinje{
 
     //metoden tar ett hörn som vi vill lägga en ny/befintlig punkt framför. Arg är alltså det hörnet som kommer petas ett steg närmare listans slut
     public void laggTillFramfor (Punkt horn, String hornNamn) {
-        Punkt[] h = new Punkt[this.horn.length+1];
-        int plats = 0;
+        Punkt[] h = new Punkt[this.horn.length];
+        Punkt[] hKopia = new Punkt[this.horn.length];
 
+        int plats = 0;
         //kopierar tidigare hörn i listan
         for(int i = 0; i <this.horn.length; i++) {
+            hKopia[i] = this.horn[i];
             h[i] = this.horn[i];
+
             if( hornNamn == h[i].getNamn() ){      //platsen ges till nya punkten
-                plats = i;
-                h[plats] = horn;
+               hKopia[i] = horn;
+               plats = i;
             }
         }
-        for(int i = plats+1; i <= this.horn.length; i++) {          //flytta fram coh sätt resterande punkter i listan
-            h[i] = this.horn[i-1];                    //THIS kommer ge oss gamla punkten, inet till värdet som satts om ovan
-        }
+            hKopia[plats+1] = h[plats];
 
-        this.horn = h;   //THIS variabeln får ett nytt värde/lista.
+        this.horn = hKopia;   //THIS variabeln får ett nytt värde/lista.
     }
 
     public void taBort (String hornNamn) {
