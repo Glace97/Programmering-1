@@ -1,9 +1,12 @@
 public class PolylinjeTest {
     public static void main(String[] args) {
 
-        //skapar objekt från Polylinje klassen
         //Går att skriva Polylinje1 om man vill testa den andra klassen med samma metoder
         Polylinje punkt = new Polylinje();
+        // 1. (Stack) skapa address/referens punkt som pekar på null dvs oaddresserad
+        // 2. (Heap) allokera en ny polylinje och ta addressen dit och stoppa in i punkt
+        // new allokerar minne och ger tillbaka addressen dit  MinnesAddress new(Datatyp/Minne)
+
 
         Polylinje valjPolylinje = new Polylinje();
 
@@ -37,6 +40,8 @@ public class PolylinjeTest {
         //testa avståndsmetoden
         System.out.println(punkt.langd());
 
-
+        //testa getters
+        System.out.println(punkt.getFarg());
+        System.out.println(punkt.getBredd());
     }
 }

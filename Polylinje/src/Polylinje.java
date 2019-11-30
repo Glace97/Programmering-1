@@ -6,7 +6,7 @@ import java.util.function.DoubleToIntFunction;
 public class Polylinje{
 
     //privata variabler behöver setter och getters
-    private Punkt[] horn;      //Lista skapas med "Punkt" som datatyp
+    private Punkt[] horn;      //Lista skapas med "Punkt" som datatyp.  hörn är referensen
     private int bredd = 1;
     private String  farg= "Svart";
 
@@ -15,7 +15,7 @@ public class Polylinje{
         this.horn = new Punkt[0];
     }
 
-    //Klassen Polylinje tar punkter som argument
+    //konstruktor Polylinje tar punkter som argument
     public Polylinje (Punkt[] horn) {
         this.horn = new Punkt[horn.length];      //Sätter in vad vi får som argument till längden på listan
         for (int i = 0; i < horn.length; i++)    //från 0 till sista platsen i listan, lägger vi in p1 -> pn på listan
@@ -33,9 +33,15 @@ public class Polylinje{
         return polyLinje;
     }
 
+    //GLÖM EJ
     //hämta hörnen
     public Punkt[] getHorn () {   //returnerar hörnen.
-        return this.horn;
+        Punkt[] h = new Punkt[this.horn.length];
+
+        for( int i = 0; i < this.horn.length; i++ ) {
+          h[i] = new Punkt(this.horn[i]);
+        }
+        return h;
     }
 
     //hämta färgen, "svart" om ingen använder setmetoden och ändrar
