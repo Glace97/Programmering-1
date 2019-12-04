@@ -1,5 +1,4 @@
 import org.w3c.dom.ls.LSOutput;
-
 import java.util.Arrays;
 import java.util.function.DoubleToIntFunction;
 
@@ -33,8 +32,6 @@ public class Polylinje{
         return polyLinje;
     }
 
-    //GLÖM EJ
-    //hämta hörnen
     public Punkt[] getHorn () {   //returnerar hörnen.
         Punkt[] h = new Punkt[this.horn.length];
 
@@ -126,6 +123,35 @@ public class Polylinje{
                     this.horn = kopia2H;
                 }
             }
+        }
+    }
+
+    public class PolylinjeIterator
+    {
+        private int aktuell = -1;  //aktuell fungerar som vår pekare
+        public PolylinjeIterator () {
+            if (Polylinje.this.horn.length > 0)   //om vi har hörn sätts aktuell till 0.
+                aktuell = 0;
+        }
+
+        public boolean finnsHorn () {            //true false statement. När används metoden?
+            return aktuell != -1;
+        }
+
+        public Punkt horn () throws java.util.NoSuchElementException {
+            if (!this.finnsHorn ())
+                throw new java.util.NoSuchElementException (
+                        "slut av iterationen");
+            Punkt horn = Polylinje.this.horn[aktuell];
+            return horn;
+        }
+
+        public void gaFram () {
+            if (aktuell >= 0 &&
+                    aktuell < Polylinje.this.horn.length - 1)
+                aktuell++;
+            else
+                aktuell = -1;
         }
     }
 }

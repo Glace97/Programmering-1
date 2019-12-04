@@ -45,6 +45,6 @@ public class PolylinjeTest {
         //testa getters
         System.out.println(punkt.getFarg());
         System.out.println(punkt.getBredd());
-
+        System.out.println(punkt.getHorn());  //kommer skriva ut en ful referens
     }
 }
