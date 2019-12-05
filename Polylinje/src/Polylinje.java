@@ -128,28 +128,28 @@ public class Polylinje{
 
     public class PolylinjeIterator
     {
-        private int aktuell = -1;  //aktuell fungerar som vår pekare
+        private int aktuell = -1;  //aktuell fungerar som vår "pekare"
         public PolylinjeIterator () {
-            if (Polylinje.this.horn.length > 0)   //om vi har hörn sätts aktuell till 0.
+            if (Polylinje.this.horn.length > 0)   //om vi har hörn sätts aktuell till 0. Den kommer börja på första "noden" plats 0.
                 aktuell = 0;
         }
 
-        public boolean finnsHorn () {            //true false statement. När används metoden?
+        public boolean finnsHorn () {            //Om det finns horn är statementen true, dvs aktuell =/= -1. Om finnsHorn är falskt (dvs listan tagit slut) går aktuellt tillbaka till -1 och är utanför "listan"
             return aktuell != -1;
         }
 
         public Punkt horn () throws java.util.NoSuchElementException {
             if (!this.finnsHorn ())
                 throw new java.util.NoSuchElementException (
-                        "slut av iterationen");
+                        "slut av iterationen");                     //om det inte finns horn kommer Programmet att stänga. Saknar catch?
             Punkt horn = Polylinje.this.horn[aktuell];
-            return horn;
+            return horn;                                            //Aktuell fungerar som en counter, första "loopen" är aktuellt = 0 om det finns hörn. Aktuell anger plats i listan och returnerar hörnen.
         }
 
-        public void gaFram () {
+        public void gaFram () {                                     //För att pekaren ska gå fram måste gaFram användas efter varje hörn returnerats. Annars returnerar den samma hörn.
             if (aktuell >= 0 &&
                     aktuell < Polylinje.this.horn.length - 1)
-                aktuell++;
+                aktuell++;                                          //ska köras så länge aktuell är 0- listans sista plats. Efter listans sista plats är aktuellt = -1.
             else
                 aktuell = -1;
         }

@@ -46,5 +46,14 @@ public class PolylinjeTest {
         System.out.println(punkt.getFarg());
         System.out.println(punkt.getBredd());
         System.out.println(punkt.getHorn());  //kommer skriva ut en ful referens
+
+        //Testa vår iterator.
+        //PolylinjeIterator beror på Polylinje objekt.
+        // YttreKlass.InreKlass inreklassRef = YtrreKlassobj.skapa inreKlass obj.
+        Polylinje.PolylinjeIterator iterator = punkt.new PolylinjeIterator();
+        while( iterator.finnsHorn() == true ) {
+            System.out.println(iterator.horn());            //skriv ut hörnen
+            iterator.gaFram();                              // aktuell pekare går fram. (vår next metod).
+        }
     }
 }
