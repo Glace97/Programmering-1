@@ -51,7 +51,7 @@ public class PolylinjeTest {
         //PolylinjeIterator beror på Polylinje objekt.
         // YttreKlass.InreKlass inreklassRef = YtrreKlassobj.skapa inreKlass obj.
         Polylinje.PolylinjeIterator iterator = punkt.new PolylinjeIterator();
-        while( iterator.finnsHorn() == true ) {
+        while( iterator.finnsHorn() ) {
             System.out.println(iterator.horn());            //skriv ut hörnen
             iterator.gaFram();                              // aktuell pekare går fram. (vår next metod).
         }

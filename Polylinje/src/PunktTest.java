@@ -8,7 +8,7 @@ public class PunktTest {
         // testa en konstruktor och en transformator
 
         Punkt p1 = new Punkt ("A", 3, 4);
-        Punkt p2 = new Punkt ("B", 5, 6);
+        Punkt p2 = new Punkt ("B", 2, 5);
         out.println (p1 + " " + p2);
 
        // testa inspektorer

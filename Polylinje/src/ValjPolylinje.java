@@ -22,15 +22,22 @@ class ValjPolylinje {
         int antalGulaPolylinjer = 0;
         double[] gulLangdKopia = new double[ANTAL_POLYLINJER];
         int plats = 0;
+        Polylinje p = null;
+        double l = Double.POSITIVE_INFINITY;
 
         for (int i = 0; i < ANTAL_POLYLINJER; i++) {
             if (polylinjer[i].getFarg() == "Gul") {
                 antalGulaPolylinjer++;
 
+                if(polylinjer[i].langd() < l){
+                    p = polylinjer[i];
+                    l = polylinjer[i].langd();
+                }
                 gulLangdKopia[plats] = polylinjer[i].langd();
                 plats++;
             }
         }
+        System.out.println(p + "  " + l);
         if (antalGulaPolylinjer == 0) {          //om inga gula linjer hittas stänger programmet.
             System.out.println("Inga gula polylinjer hittades.");
             System.exit(0);

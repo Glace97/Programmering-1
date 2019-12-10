@@ -32,11 +32,10 @@ public class Polylinje{
         return polyLinje;
     }
 
-    public Punkt[] getHorn () {   //returnerar hörnen.
-        Punkt[] h = new Punkt[this.horn.length];
-
+    public Punkt[] getHorn () {   //returnerar referens (till hörnen).
+        Punkt[] h = new Punkt[this.horn.length];    //skapar referens h, + nytt objekt
         for( int i = 0; i < this.horn.length; i++ ) {
-          h[i] = new Punkt(this.horn[i]);
+          h[i] = new Punkt(this.horn[i]);               //nytt objekt skapas för varje h[i].
         }
         return h;
     }
