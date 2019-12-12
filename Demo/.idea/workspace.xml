@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b3cec9f-7183-4218-b457-f7ffdd1c47cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Min1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Min2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/MinstaTal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/company/com/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Polylinje/src/Polylinje.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Polylinje/src/Polylinje.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Polylinje/src/PolylinjeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Polylinje/src/PolylinjeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Polylinje/src/PunktTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Polylinje/src/PunktTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Polylinje/src/ValjPolylinje.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Polylinje/src/ValjPolylinje.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +122,7 @@
       <workItem from="1573757827478" duration="28714000" />
       <workItem from="1575617492941" duration="9103000" />
       <workItem from="1575889046945" duration="5921000" />
-      <workItem from="1575897002824" duration="20727000" />
+      <workItem from="1575897002824" duration="22597000" />
     </task>
     <servers />
   </component>
