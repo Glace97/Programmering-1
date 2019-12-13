@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b3cec9f-7183-4218-b457-f7ffdd1c47cf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Chess/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/.idea/description.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/.idea/project-template.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/Chess.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/src/com/company/Chessboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Chess/src/com/company/NotValidFieldException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../test/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../test/.idea/modules.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,6 +135,8 @@
       <workItem from="1575617492941" duration="9103000" />
       <workItem from="1575889046945" duration="5921000" />
       <workItem from="1575897002824" duration="22597000" />
+      <workItem from="1576143623653" duration="280000" />
+      <workItem from="1576234294887" duration="33000" />
     </task>
     <servers />
   </component>
