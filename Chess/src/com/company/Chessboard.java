@@ -42,7 +42,7 @@ public class Chessboard {
             return (piece == null) ? s : piece.toString();
         }
     }
-
+//Slutet på fieldklassen
 
     //variabler som inte går att ändra på
     public static final int NUMBER_OF_ROWS = 8;
@@ -52,6 +52,7 @@ public class Chessboard {
 
     private Field[][] fields;           //schackbräde; vänster ska vara a-h index, höger är 1-8 index
 
+    //konstruktor
     public Chessboard() {
         fields = new Field[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];     //alltid 8x8
         char row = 0;
@@ -67,48 +68,36 @@ public class Chessboard {
         }
     }
 
-    //Skriva ut brädan DUBBELKOLLA DENNA STRINGMETHOD
-    public String toString() {
-        String[][] board = new String[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+
+    public String toString()
+    {
         StringBuilder sb = new StringBuilder();
-        char row = 'a';
-        char r = (char)(row);
-
-        for (int i = 0; i < NUMBER_OF_ROWS; i++) {
-            for (int j = 0; j < NUMBER_OF_COLUMNS; j++) {
-                board[i][j] = "--";
+        sb.append("    1  2  3  4  5  6  7  8\n");
+        for(int i = 0; i < 8; i++)
+        {
+            sb.append((char) (i + FIRST_ROW) + " ");
+            for(int i2 = 0; i2 < 8; i2++)
+            {
+                sb.append(" " + fields[i][i2]);
+                if(i2 == 7)
+                {
+                    sb.append("\n");
+                }
             }
         }
-
-        for( int index = 1; index <9; index++){
-            sb.append("  " + index + "");
-        }
-
-        sb.append("\n");
-        for (int i = 0; i < 8; i++) {
-            sb.append(r++ + " ");
-            for (int j = 0; j < 8; j++) {
-                sb.append(board[i][j]);
-            }
-            sb.append("\n");
-        }
-
-        String chessboard = sb.toString();
-        return chessboard;
+        return sb.toString();
     }
 
     // a=97, h=104 för rader, 1-8 för columnter
-    public boolean isValidField (char row, byte column) {
+    public boolean isValidField(char row, byte column) {
         boolean valid;
-        if ( row >= 97 && row <= 104 && column >=1 && column <=8 ) {
+        if (row >= 97 && row <= 104 && column >= 1 && column <= 8) {
             valid = true;
-        }
-        else {
+        } else {
             valid = false;
         }
         return valid;
     }
-
 
     //abstrakt klass. Går inte att skapa ett objekt från klassen.
     //Subklasserna MÅSTE overridea abstrakta metoder; (för att speicifiera behaviour).
@@ -122,65 +111,65 @@ public class Chessboard {
         protected byte column = -1;             //utanför brädan
 
         //konstruktor??
-        protected Chesspiece (char color, char name) {
+        protected Chesspiece(char color, char name) {
             this.color = color;
             this.name = name;
         }
 
-        public String toString () {
+        public String toString() {
             return "" + color + name;
         }
 
         //kollar om schakpjäsen är på brädan
-        public boolean isOnBoard () {
-            return Chessboard.this.isValidField (row, column);
+        public boolean isOnBoard() {
+            return Chessboard.this.isValidField(row, column);
         }
 
         //metod för att flytta på pjäserna, tar rad och kolumn
-        public void moveTo (char row, byte column) throws NotValidFieldException {
-            if (!Chessboard.this.isValidField (row, column))
-                throw new NotValidFieldException ("bad field: " + row + column );
+        public void moveTo(char row, byte column) throws NotValidFieldException {
+            if (!Chessboard.this.isValidField(row, column))
+                throw new NotValidFieldException("bad field: " + row + column);
             this.row = row;
             this.column = column;
             int r = row - FIRST_ROW;                            //för att få rätt index
             int c = column - FIRST_COLUMN;                      //för att få rätt index
-            Chessboard.this.fields[r][c].put (this);     // sätt pjäsen på DENNA plats i fältet
+            Chessboard.this.fields[r][c].put(this);     // sätt pjäsen på DENNA plats i fältet
         }
 
         //plocka av pjäsen
-        public void moveOut () {
-            if(isOnBoard()){
-                Chessboard.this.fields[row- FIRST_ROW][column - FIRST_COLUMN].removePiece();
+        public void moveOut() {
+            if (isOnBoard()) {
+                Chessboard.this.fields[row - FIRST_ROW][column - FIRST_COLUMN].removePiece();
             }
         }
 
         //metoderna som måste speicificeras i subklasserna
-        public abstract void markReachableFields ();
-        public abstract void unmarkReachableFields ();
+        public abstract void markReachableFields();
+
+        public abstract void unmarkReachableFields();
     }
 
 
-//HAR INTE TAGIT HÄNSYN TILL EVENTUELLA SPELARE IVÄGEN/KICKA ETC
     public class Pawn extends Chesspiece {
-        public Pawn (char color, char name) {
-            super (color, name);
+        public Pawn(char color, char name) {
+            super(color, name);
         }       //konstruktor
 
-        public void markReachableFields () {
+        public void markReachableFields() {
             byte col = (byte) (column + 1);         //castar column från int till byte
-            if (Chessboard.this.isValidField (row, col)) {      //om raden och kolumnen uppfyller isvalidField=true
+            if (Chessboard.this.isValidField(row, col)) {      //om raden och kolumnen uppfyller isvalidField=true
                 int r = row - FIRST_ROW;                        //för att få rätt index plats 1 har index 0
                 int c = col - FIRST_COLUMN;                     // "-"
-                Chessboard.this.fields[r][c].mark ();           //markerar
+                Chessboard.this.fields[r][c].mark();           //markerar
             }
         }
 
-        public void unmarkReachableFields () {
+        public void unmarkReachableFields() {
             byte col = (byte) (column + 1);
-            if (Chessboard.this.isValidField (row, col)) {      //isValidField metoden ligger i Chessboard klassen.
+            if (Chessboard.this.isValidField(row, col)) {      //isValidField metoden ligger i Chessboard klassen.
                 int r = row - FIRST_ROW;
                 int c = col - FIRST_COLUMN;
-                Chessboard.this.fields[r][c].unmark ();
+                Chessboard.this.fields[r][c].unmark();
             }
         }
     }
@@ -205,7 +194,7 @@ public class Chessboard {
                     Chessboard.this.fields[r][i].mark();            //kommer markera hela raden r
                 }
 
-                for (int j = 0; j < FIRST_ROW; j++) {
+                for (int j = 0; j < NUMBER_OF_ROWS; j++) {
                     Chessboard.this.fields[j][c].mark();
                     ;           //kommer markera hela kolumnen C
                 }
@@ -232,47 +221,69 @@ public class Chessboard {
 
             }
         }
+    }
 
-        public class Knight extends Chesspiece {
-            //Konstruktor
-            public Knight (char color, char name) {
-                super(color, name);
-            }
+    public class Knight extends Chesspiece {
+        //Konstruktor
+        public Knight(char color, char name) {
+            super(color, name);
+        }
 
-            byte col = (byte) (column + 1);
+        byte col = (byte) (column + 1);
 
-            @Override
-            public void markReachableFields(){
-                if((Chessboard.this.isValidField(row, column))) {
-                    int r = row - FIRST_ROW;
-                    int c = column - FIRST_COLUMN;
-                    int stepsForward = 0;
-                    //Riddaren kan gå 2 steg fram och ett till höger
+        @Override
+        public void markReachableFields() {
+            if ((Chessboard.this.isValidField(row, column))) {
+                int r = row - FIRST_ROW;
+                int c = column - FIRST_COLUMN;
+                int stepsForward = 0;
+                //Riddaren kan gå 2 steg fram och ett till höger
 
-                    while( stepsForward < 2 ) {
-                        Chessboard.this.fields[++r][c].mark(); //markera 2 stegen framför
-                        stepsForward++;
+                while (stepsForward < 2) {
+                    if (r + stepsForward + 1 < NUMBER_OF_ROWS) {
+                        Chessboard.this.fields[r + stepsForward + 1][c].mark(); //markera 2 stegen framför
                     }
-                    Chessboard.this.fields[r][c++].mark(); //markera det högra steget
+                    if (0 <= r - stepsForward - 1) {
+                        Chessboard.this.fields[r - stepsForward - 1][c].mark(); //markera 2 stegen framför
+                    }
+                    stepsForward++;
                 }
-            }
-
-            @Override
-            public void unmarkReachableFields() {
-                if((Chessboard.this.isValidField(row, column))) {
-                    int r = row - FIRST_ROW;
-                    int c = column - FIRST_COLUMN;
-                    int stepsForward = 0;
-                    //Riddaren kan gå 2 steg fram och ett till höger
-
-                    while( stepsForward < 2 ) {
-                        Chessboard.this.fields[++r][c].unmark(); //markera 2 stegen framför
-                        stepsForward++;
+                if(r + stepsForward < NUMBER_OF_ROWS) {
+                    if(c + 1 < NUMBER_OF_COLUMNS) {
+                        Chessboard.this.fields[r + stepsForward][c + 1].mark(); //markera det högra steget
                     }
-                    Chessboard.this.fields[r][c++].unmark(); //markera det högra steget
+                    if(0 <= c - 1) {
+                        Chessboard.this.fields[r + stepsForward][c - 1].mark();
+                    }
+                }
+                if(0 <= r - stepsForward) {
+                    if(c + 1 < NUMBER_OF_COLUMNS) {
+                        Chessboard.this.fields[r - stepsForward][c + 1].mark(); //markera det högra steget
+                    }
+                    if(0 <= c - 1) {
+                        Chessboard.this.fields[r - stepsForward][c - 1].mark();
+                    }
                 }
             }
         }
+
+        @Override
+        public void unmarkReachableFields() {
+            if ((Chessboard.this.isValidField(row, column))) {
+                int r = row - FIRST_ROW;
+                int c = column - FIRST_COLUMN;
+                int stepsForward = 0;
+                //Riddaren kan gå 2 steg fram och ett till höger
+
+                while (stepsForward < 2) {
+                    Chessboard.this.fields[++r][c].unmark(); //markera 2 stegen framför
+                    stepsForward++;
+                }
+                Chessboard.this.fields[r][c++].unmark(); //markera det högra steget
+            }
+        }
+    }
+
 
         public class Bishop extends Chesspiece {
             //konstruktor
@@ -296,25 +307,25 @@ public class Chessboard {
 
                     //frammåt, höger diagonal
                     while ((r - forwardR) >= 0 && (c + forwardR) <= 7) {
-                        Chessboard.this.fields[r - forwardR][c + forwardR].unmark();
+                        Chessboard.this.fields[r - forwardR][c + forwardR].mark();
                         forwardR++;
                     }
 
                     //frammåt vänster, diagonal
                     while ((r - forwardL) >= 0 && (c - forwardL) >= 0) {
-                        Chessboard.this.fields[r - forwardL][c - forwardL].unmark();
+                        Chessboard.this.fields[r - forwardL][c - forwardL].mark();
                         forwardL++;
                     }
 
                     //bakåt höger, diagonal
                     while ((r + backR) <= 7 && (c + backR) <= 7) {
-                        Chessboard.this.fields[r + backR][c + backR].unmark();
+                        Chessboard.this.fields[r + backR][c + backR].mark();
                         backR++;
                     }
 
                     //bakåt, vänster
                     while ((r + backL) <= 7 && (c - backL) >= 0) {
-                        Chessboard.this.fields[r + backL][c - backL].unmark();
+                        Chessboard.this.fields[r + backL][c - backL].mark();
                         backL++;
                     }
                 }
@@ -361,7 +372,7 @@ public class Chessboard {
 
         public class Queen extends Chesspiece {
 
-            public Queen (char color, char name){
+            public Queen(char color, char name) {
                 super(color, name);
             }
 
@@ -407,14 +418,14 @@ public class Chessboard {
                         Chessboard.this.fields[r][i].mark();            //kommer markera hela raden r
                     }
 
-                    for (int j = 0; j < FIRST_ROW; j++) {
+                    for (int j = 0; j < NUMBER_OF_ROWS; j++) {
                         Chessboard.this.fields[j][c].mark();             //kommer markera hela kolumnen c
 
                     }
                 }
             }
 
-            public void unmarkReachableFields(){
+            public void unmarkReachableFields() {
                 if (Chessboard.this.isValidField(row, column)) {
                     int r = row - FIRST_ROW;
                     int c = column - FIRST_COLUMN;
@@ -457,6 +468,7 @@ public class Chessboard {
                         Chessboard.this.fields[j][c].unmark();             //kommer markera hela kolumnen c
 
                     }
+                }
             }
         }
 
@@ -467,50 +479,18 @@ public class Chessboard {
             }
 
             public void markReachableFields() {
-                byte col = (byte) (column + 1);
+              //  byte col = (byte) (column + 1);
 
                 if (Chessboard.this.isValidField(row, column)){
-                    int r = row - FIRST_ROW;
-                    int c = column - FIRST_COLUMN;
-
-                    //markera framför
-                    if( r-1 >= 0 ) {
-                        Chessboard.this.fields[r - 1][c].mark();
-                    }
-
-                    //markera bakom
-                    if( r+1 <= 7 ){
-                        Chessboard.this.fields[r+1][c].mark();
-                    }
-
-                    //markera till höger
-                    if ( c+1 <= 7 ) {
-                        Chessboard.this.fields[r][c+1].mark();
-                    }
-
-                    //markera till vänster
-                    if( c-1 >= 0 ){
-                        Chessboard.this.fields[r][c-1].mark();
-                    }
-
-                    //markera höger diagonal fram
-                    if(c+1 <= 7 && r-1 >= 0 ){
-                        Chessboard.this.fields[r-1][c+1].mark();
-                    }
-
-                    //markera vänster diagonal fram
-                    if( c-1 >= 0 && r-1 >= 0 ) {
-                        Chessboard.this.fields[r-1][c-1].mark();
-                    }
-
-                    //markera höger diagonal bak
-                    if ( r+1 <= 7 && c+1 <= 7 ){
-                        Chessboard.this.fields[r+1][c+1].mark();
-                    }
-
-                    //markera vänstra diagonalen bak
-                    if ( r-1 >= 0 && c-1 >= 0){
-                        Chessboard.this.fields[r-1][c-1].mark();
+                    int rIndex = row - FIRST_ROW;
+                    int cIndex = column - FIRST_COLUMN;
+                    for (int row = rIndex - 1; row <= rIndex + 1; row++) {
+                        if(0 <= row && row < 8) {
+                            for(int col = cIndex - 1; col <= cIndex + 1; col++) {
+                                if(0 <= col && col < 8)
+                                    Chessboard.this.fields[row][col].mark();
+                            }
+                        }
                     }
                 }
 
@@ -562,11 +542,11 @@ public class Chessboard {
                     if ( r-1 >= 0 && c-1 >= 0){
                         Chessboard.this.fields[r-1][c-1].unmark();
                     }
+
                 }
             }
         }
-
-        }
-    }
 }
+
+
 
