@@ -1,5 +1,7 @@
 package com.company;
 
+import java.sql.SQLOutput;
+
 public class ChessboardTest {
     public static void main(String[] args) throws NotValidFieldException {
         Chessboard chessboard = new Chessboard(); //Yttre klassen Chessboard, med ref till objtypen
@@ -21,15 +23,15 @@ public class ChessboardTest {
                 + "\n King: " + pieces[4]
                 + "\n Knight: " + pieces[5] + "\n");
 
-        pieces[5].moveTo('d', (byte) 4);
-        pieces[5].markReachableFields();
-        System.out.println(chessboard);
 
-      /*  for(int i = 0; i < pieces.length; i++){
-            pieces[i].markReachableFields();  // markera fält spelpjäsen kan röra sig
-            System.out.println(pieces.toString());
-            System.out.println(chessboard);  //markerade fält
-            pieces[i].unmarkReachableFields();
-        }*/
+        for(int i = 0; i < pieces.length; i++) {
+            System.out.println(pieces[i]);
+            pieces[i].moveTo('d', (byte) 4);        //flytta chesspiece till plats ->
+            pieces[i].markReachableFields();             //markera fälten, markerar dessa rätt?
+            System.out.println(chessboard);              //Skriv ut chessoard, ska även visa spelpjäsen och markerade fält
+            pieces[i].unmarkReachableFields();              //avmarkera
+            pieces[i].moveOut();                            //Plocka bort pjäs
+            System.out.println(chessboard);                 //Skriv ut en tom bräda (test av mveout och unmark metoder.
+        }
     }
 }
