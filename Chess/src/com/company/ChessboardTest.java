@@ -23,7 +23,7 @@ public class ChessboardTest {
                 + "\n King: " + pieces[4]
                 + "\n Knight: " + pieces[5] + "\n");
 
-
+        //varje ojäs har redan testats vid något tillfälle.Sammanställer allt i en loop
         for(int i = 0; i < pieces.length; i++) {
             System.out.println(pieces[i]);
             pieces[i].moveTo('d', (byte) 4);        //flytta chesspiece till plats ->

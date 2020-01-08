@@ -68,14 +68,14 @@ public class Chessboard {
         }
     }
 
-
+//Skriva ut brädan och spelarna
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("    1  2  3  4  5  6  7  8\n");
+        sb.append("    1  2  3  4  5  6  7  8\n");              //kolumnerna
         for(int i = 0; i < 8; i++)
         {
-            sb.append((char) (i + FIRST_ROW) + " ");
+            sb.append((char) (i + FIRST_ROW) + " ");            //casta till char
             for(int i2 = 0; i2 < 8; i2++)
             {
                 sb.append(" " + fields[i][i2]);
